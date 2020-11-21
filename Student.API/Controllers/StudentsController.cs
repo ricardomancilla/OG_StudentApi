@@ -22,7 +22,6 @@ namespace Student.API.Controllers
         }
 
         [HttpGet]
-        [Route("students")]
         [ProducesResponseType(typeof(IEnumerable<DataAccess.Model.Student>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -31,31 +30,29 @@ namespace Student.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("student")]
+        [HttpGet("{id}")]
         [ProducesResponseType(typeof(DataAccess.Model.Student), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetAsync(int Id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            var result = await studentService.GetAsync(Id);
+            var result = await studentService.GetAsync(id);
 
             if (result == null)
             {
-                return NotFound($"Student with id {Id} was not found");
+                return NotFound($"Student with id {id} was not found");
             }
 
             return Ok(result);
         }
 
         [HttpPost]
-        [Route("student")]
         [ProducesResponseType(typeof(DataAccess.Model.Student), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateAsync(StudentDto studentDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("values provided are invalid.");
+                return BadRequest("values provided are invalid");
             }
 
             DataAccess.Model.Student student = mapper.Map<DataAccess.Model.Student>(studentDto);
@@ -64,15 +61,20 @@ namespace Student.API.Controllers
 
             student.Id = result;
 
-            return Ok(student);
+            return CreatedAtAction(nameof(GetAsync), new { id = result }, student);
         }
 
         [HttpPut]
-        [Route("student")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> UpdateAsync(DataAccess.Model.Student student)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("values provided are invalid");
+            }
+
             var result = await studentService.UpdateAsync(student);
 
             if (!result)
@@ -80,23 +82,22 @@ namespace Student.API.Controllers
                 return NotFound($"Student with id {student.Id} was not found");
             }
 
-            return Ok(result);
+            return NoContent();
         }
 
         [HttpDelete]
-        [Route("student")]
         [ProducesResponseType(typeof(bool), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DeleteAsync(int Id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            var result = await studentService.DeleteAsync(Id);
+            var result = await studentService.DeleteAsync(id);
 
             if (!result)
             {
-                return NotFound($"Student with id {Id} was not found");
+                return NotFound($"Student with id {id} was not found");
             }
 
-            return Ok(result);
+            return NoContent();
         }
     }
 }

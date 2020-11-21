@@ -13,7 +13,7 @@ namespace Student.API.DTO
         [Required]
         public string LastName { get; set; }
 
-        [Required, Range(1, int.MaxValue)]
+        [Required, Range(5, int.MaxValue)]
         public int Age { get; set; }
 
         [Required]

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{221E9D07-9869-4926-AE2C-04A46E1CCA68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student.Tests", "Student.Tests\Student.Tests.csproj", "{FE250C62-3908-497B-84AD-CFE4DD4B2476}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{221E9D07-9869-4926-AE2C-04A46E1CCA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{221E9D07-9869-4926-AE2C-04A46E1CCA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{221E9D07-9869-4926-AE2C-04A46E1CCA68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE250C62-3908-497B-84AD-CFE4DD4B2476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE250C62-3908-497B-84AD-CFE4DD4B2476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE250C62-3908-497B-84AD-CFE4DD4B2476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE250C62-3908-497B-84AD-CFE4DD4B2476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
